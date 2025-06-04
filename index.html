@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Главный экран -->
+        <div id="mainScreen">
+            <header class="header">
+                <h1><i class="fas fa-comments"></i> Мои чаты</h1>
+                <button id="addChatBtn" class="btn btn-circle">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </header>
+
+            <div class="current-user-display" id="currentUserDisplay">
+                <i class="fas fa-user"></i> Вы: <span id="currentUserName"></span> (кликните чтобы изменить)
+            </div>
+
+            <div class="chats-list" id="chatsList">
+                <!-- Чат будет здесь -->
+            </div>
+        </div>
+
+        <!-- Модальное окно создания чата -->
+        <div id="createChatModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Новый чат</h2>
+                <form id="createChatForm">
+                    <div class="form-group">
+                        <label for="newChatName">Название:</label>
+                        <input type="text" id="newChatName" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newChatPassword">Пароль (необязательно):</label>
+                        <input type="password" id="newChatPassword" class="input-field">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Создать
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Модальное окно входа -->
+        <div id="joinChatModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="joinChatTitle">Вход в чат</h2>
+                <form id="joinChatForm">
+                    <div class="form-group" id="passwordGroup" style="display:none">
+                        <label for="chatPassword">Пароль:</label>
+                        <input type="password" id="chatPassword" class="input-field" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Экран чата -->
+        <div id="chatScreen" class="chat-screen" style="display:none">
+            <header class="chat-header">
+                <h2 id="currentRoomName"></h2>
+                <div>
+                    <button id="settingsBtn" class="btn btn-secondary">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button id="leaveRoomBtn" class="btn btn-secondary">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="messages-container" id="messagesContainer"></div>
+
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Ваше сообщение..." class="input-field">
+                <button id="sendMessageBtn" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Модальное окно настроек -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Удаление чата</h2>
+                <div class="form-group">
+                    <label for="adminPassword">Пароль администратора:</label>
+                    <input type="password" id="adminPassword" class="input-field" placeholder="sopopdp" required>
+                </div>
+                <button id="deleteChatBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Удалить чат
+                </button>
+            </div>
+        </div>
+
+        <!-- Модальное окно изменения имени -->
+        <div id="changeNameModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Изменить имя</h2>
+                <form id="changeNameForm">
+                    <div class="form-group">
+                        <label for="newUserName">Ваше новое имя:</label>
+                        <input type="text" id="newUserName" class="input-field" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
